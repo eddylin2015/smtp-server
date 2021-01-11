@@ -17,3 +17,93 @@
 }
 remoteAddress: '54.240.4.8',
 clientHostname: 'a4-8.smtp-out.eu-west-1.amazonses.com',
+
+mysql> desc mail;
++-------------+------------+------+-----+---------+-------+
+| Field       | Type       | Null | Key | Default | Extra |
++-------------+------------+------+-----+---------+-------+
+| from_       | mediumtext | YES  |     | NULL    |       |
+| to_         | mediumtext | YES  |     | NULL    |       |
+| subject_    | mediumtext | YES  |     | NULL    |       |
+| body_       | longtext   | YES  |     | NULL    |       |
+| dot_        | tinyint(1) | YES  |     | NULL    |       |
+| reci_dt     | mediumtext | YES  |     | NULL    |       |
+| data_size   | int        | YES  |     | NULL    |       |
+| dele_       | int        | YES  |     | NULL    |       |
+| hc          | mediumtext | YES  |     | NULL    |       |
+| ipaddr      | mediumtext | YES  |     | NULL    |       |
+| helo_domain | mediumtext | YES  |     | NULL    |       |
++-------------+------------+------+-----+---------+-------+
+11 rows in set (0.00 sec)
+
+config.js
+
+'use strict';
+// Hierarchical node.js configuration with command-line arguments, environment
+// variables, and files.
+const options = {
+    host: '127.0.0.1',
+    user: '',
+    password: '',
+    database: ''
+};
+const whitelist = []
+const whitelist_endsWith = [".gov.mo",".org.mo",".edu.mo"];
+const blacklist = [];
+const blacklist_mail = = [];
+const blacklist_endsWith = [];
+const blacklist_IP_startsWith = [];
+
+const hostname="hostname";
+const smtp_host = 'ASPMX.L.GOOGLE.COM';//var HOST = 'smtp-relay.gmail.com';
+const smtp_port = 25
+const mydomain = "domain.net";
+const gsmail_db_path = 'mail.sqlite';
+const teacher_j = "te1";
+const teacher_e = "te2";
+const example_mail_data =
+    `From: ${teacher_j}@${mydomain}\r\n` +
+    "To: ${teacher_e}@${mydomain}\r\n` +
+    "Subject: [FireWallLog - Event]+" + Date.now().toLocaleString() + " \r\n" +
+    "\r\n" +
+    "Nothing.	\r\n" +
+    "\r\n" +
+    ".\r\n"
+    ;
+const logpath = "gsuite_gmail_inboundgateway_mailrelayserver_log.txt";
+const path = require('path');
+const nconf = module.exports = require('nconf');
+nconf
+  // 1. Command-line arguments
+  .argv()
+  // 2. Environment variables
+  .env([
+    'MYSQL_OPTIONS',
+    'HOSTNAME',
+    'NODE_ENV',
+    'CA_PRIVKEY',
+    'CA_FULLCHAIN',
+  ])
+  // 3. Config file
+  .file({ file: path.join(__dirname, 'config.json') })
+  // 4. Defaults
+  .defaults({
+    MYSQL_OPTIONS: options,
+    WHITELIST: whitelist ,
+    WHITELIST_ENDSWITH: whitelist_endsWith ,
+    BLACKLIST: blacklist ,
+    BLACKLIST_MAIL: blacklist_mail ,
+    BLACKLIST_ENDSWITH: blacklist_endsWith,
+    BLACKLIST_IP_STARTSWITH: blacklist_IP_startsWith ,
+    HOSTNAME:hostname,    
+    CA_PRIVKEY:"C:/code/Web/sslcert/privkey.pem",
+    CA_FULLCHAIN:"C:/code/Web/sslcert/fullchain.pem",
+    smtp_host:smtp_host ,
+    smtp_port:smtp_port ,
+    mydomain: mydomain ,
+    gsmail_db_path : gsmail_db_path,
+    teacher_j : teacher_j,
+    teacher_e : teacher_e,
+    example_mail_data : example_mail_data ,
+    logpath: logpath ,
+  });
