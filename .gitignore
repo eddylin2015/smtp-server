@@ -1,0 +1,4 @@
+node_modules/
+sendmail.*
+config.js
+gsuite_gmail_inboundgateway_mailrelayserver_log.txt

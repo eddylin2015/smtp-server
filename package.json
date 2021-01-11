@@ -1,0 +1,19 @@
+{
+  "name": "coolmail465",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "mailparser": "^3.0.1",
+    "mysql": "^2.18.1",
+    "nconf": "^0.11.1",
+    "smtp-server": "^3.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

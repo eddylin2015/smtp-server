@@ -1,0 +1,19 @@
+{
+  id: 'rkpa6toct35ez224',
+  secure: false,
+  localAddress: '192.168.62.99',
+  localPort: 25,
+  remoteAddress: '54.240.4.8',
+  remotePort: 34807,
+  clientHostname: 'a4-8.smtp-out.eu-west-1.amazonses.com',
+  openingCommand: false,
+  hostNameAppearsAs: false,
+  xClient: Map {},
+  xForward: Map {},
+  transmissionType: 'SMTP',
+  tlsOptions: false,
+  envelope: { mailFrom: false, rcptTo: [] },
+  transaction: 1
+}
+remoteAddress: '54.240.4.8',
+clientHostname: 'a4-8.smtp-out.eu-west-1.amazonses.com',
